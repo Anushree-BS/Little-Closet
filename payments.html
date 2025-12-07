@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toddler Kits - Payments</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="logo">🌿 Toddler Kits</div>
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="products.html">Toddler Items</a>
+        <a href="#" id="cart-link">Cart (<span id="cart-count">0</span>)</a>
+        <a href="payments.html">Payments</a>
+        <a href="thankyou.html">Thank You</a>
+    </nav>
+</header>
+
+<section class="checkout-section">
+
+    <h2 class="section-title">Complete Your Booking</h2>
+
+    <div class="checkout-container">
+
+        <!-- FORM -->
+        <form id="payment-form" class="payment-form" onsubmit="return processOrder(event)">
+            <h3>Parent Details</h3>
+
+            <label>Full Name</label>
+            <input type="text" required id="fullname">
+
+            <label>Phone Number</label>
+            <input type="text" required id="phone">
+
+            <label>Email</label>
+            <input type="email" required id="email">
+
+            <label>Address</label>
+            <textarea id="address" required></textarea>
+
+            <label>Select Payment Method</label>
+            <select id="payment-method" required>
+                <option value="UPI">UPI</option>
+                <option value="Card">Debit / Credit Card</option>
+                <option value="COD">Cash on Delivery</option>
+            </select>
+
+            <button type="submit" class="btn-primary full-btn">Proceed to Pay</button>
+        </form>
+
+        <!-- ORDER SUMMARY -->
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <div id="summary-items"></div>
+            <p class="total">Total: ₹<span id="summary-total">0</span></p>
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+    <p>© 2025 Toddler Kits. All Rights Reserved.</p>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
