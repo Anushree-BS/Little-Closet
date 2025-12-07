@@ -1,94 +1,78 @@
-// ================== CART DATA ==================
+// ---------------- CART LOGIC ---------------- //
+
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+// Save cart to storage
 function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// ================== ADD TO CART ==================
-function addToCart(name, price, image) {
-    const item = { name, price, image };
-    cart.push(item);
-    saveCart();
-    alert(name + " added to cart!");
+// Update cart number in navbar
+function updateCartCount() {
+  const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const counter = document.getElementById("cart-count");
+  if (counter) counter.innerText = count;
+}
+updateCartCount();
+
+// Add item to cart
+function addToCart(name, price) {
+  let item = cart.find(i => i.name === name);
+
+  if (item) {
+    item.quantity++;
+  } else {
+    cart.push({ name, price, quantity: 1 });
+  }
+
+  saveCart();
+  updateCartCount();
+  alert("Item added to cart!");
 }
 
-// ================== DISPLAY CART ==================
-function displayCart() {
-    const cartBox = document.getElementById("cartContainer");
-    const itemCount = document.getElementById("itemCount");
-    const totalAmount = document.getElementById("totalAmount");
+// Load Cart Items in cart.html
+function loadCart() {
+  const container = document.getElementById("cart-items");
+  const totalBox = document.getElementById("cart-total");
 
-    if (!cartBox) return;
+  if (!container) return;
 
-    cartBox.innerHTML = "";
+  container.innerHTML = "";
+  let total = 0;
 
-    if (cart.length === 0) {
-        cartBox.innerHTML = "<p>Your cart is empty.</p>";
-        itemCount.textContent = "0";
-        totalAmount.textContent = "0";
-        return;
-    }
+  cart.forEach((item, index) => {
+    total += item.price * item.quantity;
 
-    let total = 0;
+    container.innerHTML += `
+      <div class="cart-item">
+        <strong>${item.name}</strong>
+        <span>₹${item.price} × ${item.quantity}</span>
+      </div>
+    `;
+  });
 
-    cart.forEach((item, index) => {
-        total += Number(item.price);
-
-        const div = document.createElement("div");
-        div.classList.add("cart-item");
-
-        div.innerHTML = `
-            <img src="${item.image}" alt="">
-            <h3>${item.name}</h3>
-            <p>₹${item.price}</p>
-            <button class="remove-btn" data-id="${index}">Remove</button>
-        `;
-
-        cartBox.appendChild(div);
-    });
-
-    // update totals
-    itemCount.textContent = cart.length;
-    totalAmount.textContent = total;
-
-    // remove item buttons
-    document.querySelectorAll(".remove-btn").forEach(btn => {
-        btn.addEventListener("click", function () {
-            const index = this.getAttribute("data-id");
-            cart.splice(index, 1);
-            saveCart();
-            displayCart();
-        });
-    });
+  totalBox.innerText = total;
 }
 
-// ================== CLEAR CART ==================
+// Clear Cart
 function clearCart() {
-    cart = [];
-    saveCart();
-    displayCart();
+  cart = [];
+  saveCart();
+  loadCart();
+  updateCartCount();
 }
 
-// ================== CHECKOUT ==================
-function checkout() {
-    if (cart.length === 0) {
-        alert("Your cart is empty.");
-        return;
-    }
-    window.location.href = "payment.html";
+// Checkout → go to payments
+function goToCheckout() {
+  if (cart.length === 0) {
+    alert("Cart is empty");
+    return;
+  }
+  window.location.href = "payments.html";
 }
 
-// ================== EVENT LISTENERS ==================
-document.addEventListener("DOMContentLoaded", () => {
-
-    if (document.getElementById("cartContainer")) {
-        displayCart();
-    }
-
-    const clearBtn = document.getElementById("clearCartBtn");
-    if (clearBtn) clearBtn.addEventListener("click", clearCart);
-
-    const checkoutBtn = document.getElementById("checkoutBtn");
-    if (checkoutBtn) checkoutBtn.addEventListener("click", checkout);
-});
+// Payment → go to thankyou
+function makePayment() {
+  localStorage.removeItem("cart");
+  window.location.href = "thankyou.html";
+}
