@@ -1,37 +1,50 @@
-// ---------------- ORDER SUMMARY (Payments Page) ----------------
+document.addEventListener("DOMContentLoaded", () => {
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    // ------- DISPLAY ORDER SUMMARY ------
+    const summaryBox = document.getElementById("order-summary");
+    if (summaryBox) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-if (document.getElementById("summary-items")) {
-    let summaryHTML = "";
-    let total = 0;
+        summaryBox.innerHTML = cart
+            .map(item => `<p>${item.name} - ₹${item.price}</p>`)
+            .join("");
 
-    cart.forEach(item => {
-        summaryHTML += `<p>${item.name} - ₹${item.price}</p>`;
-        total += item.price;
-    });
+        if (cart.length === 0) summaryBox.innerHTML = "<p>Cart is empty</p>";
+    }
 
-    document.getElementById("summary-items").innerHTML = summaryHTML;
-    document.getElementById("summary-total").textContent = total;
-}
+    // ------- PAYMENT FORM --------
+    const form = document.getElementById("payment-form");
+    if (form) {
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
 
-// ---------------- PROCESS ORDER ----------------
+            const orderId = Math.floor(100000 + Math.random() * 900000);
+            localStorage.removeItem("cart");
 
-function processOrder(event) {
-    event.preventDefault();
+            window.location.href = `thankyou.html?orderId=${orderId}`;
+        });
+    }
 
-    const orderId = "TK" + Math.floor(Math.random() * 100000);
+    // ------- CART PAGE RENDER -------
+    const cartContainer = document.getElementById("cart-items");
+    if (cartContainer) {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let total = 0;
 
-    localStorage.removeItem("cart");
+        cartContainer.innerHTML = cart
+            .map((item, index) => {
+                total += item.price;
 
-    window.location.href = `thankyou.html?orderId=${orderId}`;
-    return false;
-}
+                return `
+                    <div class="cart-item">
+                        <p>${item.name} – ₹${item.price}</p>
+                        <button onclick="removeFromCart(${index})" class="btn secondary small">Remove</button>
+                    </div>
+                `;
+            })
+            .join("");
 
-// ---------------- THANK YOU PAGE: SHOW ORDER ID ----------------
+        document.getElementById("cart-total").textContent = total;
+    }
 
-if (document.getElementById("order-id")) {
-    const urlParams = new URLSearchParams(window.location.search);
-    document.getElementById("order-id").textContent =
-        urlParams.get("orderId") || "N/A";
-}
+});
