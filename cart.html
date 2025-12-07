@@ -2,38 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Cart | Toddler Kits</title>
+    <title>Your Cart - Toddler Kits</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<header>
-    <h1 class="logo">Toddler Kits</h1>
-    <nav>
+<header class="main-header">
+    <h2 class="logo">Toddler Kits</h2>
+    <nav class="navbar">
         <a href="index.html">Home</a>
         <a href="products.html">Toddler Items</a>
-        <a href="cart.html">Cart <span id="cart-count">0</span></a>
+        <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
         <a href="payments.html">Payments</a>
     </nav>
 </header>
 
 <section class="cart-section">
-    <h2>Your Cart</h2>
+    <h1>Your Cart</h1>
 
-    <div id="cart-items"></div>
+    <div class="cart-container">
 
-    <h3>Total: ₹<span id="cart-total">0</span></h3>
+        <div class="cart-items-list">
+            <div id="cart-items"></div>
+        </div>
 
-    <a href="payments.html" class="btn">Proceed to Payment</a>
+        <div class="cart-summary-box">
+            <h2>Order Summary</h2>
+            <p class="total-price">Total: ₹<span id="cart-total">0</span></p>
+
+            <a href="payments.html">
+                <button class="btn-primary full-btn">Proceed to Payment</button>
+            </a>
+
+            <a href="products.html">
+                <button class="btn-secondary full-btn">Continue Shopping</button>
+            </a>
+        </div>
+
+    </div>
 </section>
 
-<footer>
-    <p>© Toddler Kits</p>
+<footer class="footer">
+    <p>© 2025 Toddler Kits. All Rights Reserved.</p>
 </footer>
 
-<script src="cart.js"></script>
 <script src="main.js"></script>
 </body>
 </html>
