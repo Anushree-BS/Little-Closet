@@ -1,44 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Products - Toddler Kits</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Toddler Kits — Products</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-<header>
-  <h1>Toddler Kits</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-    <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
-  </nav>
-</header>
-
-<div class="container">
-  <h2>Our Products</h2>
-
-  <div class="products-grid">
-    <div class="product-card">
-      <h3>Baby Bottle</h3>
-      <p>₹150</p>
-      <button onclick="addToCart('Baby Bottle',150)">Add to Cart</button>
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo-bubble">TK</div>
+      <div class="brand-text">
+        <h1 class="brand-title">Toddler Kits</h1>
+        <p class="brand-sub">Colorful, safe & fun</p>
+      </div>
     </div>
 
-    <div class="product-card">
-      <h3>Pampers</h3>
-      <p>₹300</p>
-      <button onclick="addToCart('Pampers',300)">Add to Cart</button>
-    </div>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="products.html" class="nav-link">Toddler Items</a>
+      <a href="cart.html" class="nav-link">Cart <span id="cart-count" class="cart-count">0</span></a>
+      <a href="payments.html" class="nav-link">Payments</a>
+    </nav>
+  </header>
 
-    <div class="product-card">
-      <h3>Baby Soap</h3>
-      <p>₹80</p>
-      <button onclick="addToCart('Baby Soap',80)">Add to Cart</button>
-    </div>
-  </div>
-</div>
+  <main>
+    <section class="products-hero">
+      <h2 class="section-title">Shop Toddler Essentials</h2>
+      <p class="section-sub">Hand-selected items for mealtime, playtime and dress-up.</p>
+    </section>
 
-<script src="main.js"></script>
+    <section class="products-grid" aria-label="Products list">
+      <!-- Product: Feeding Bottle -->
+      <article class="product">
+        <img src="https://i.ibb.co/7Qh8Zqz/bottle.jpg" alt="Feeding Bottle">
+        <h3>SafeSip Feeding Bottle</h3>
+        <p class="muted">BPA-free, easy-grip</p>
+        <div class="product-bottom">
+          <div class="price">₹499</div>
+          <div class="actions">
+            <button class="btn btn-small btn-outline" onclick="addToCart('SafeSip Feeding Bottle',499,'https://i.ibb.co/7Qh8Zqz/bottle.jpg')">Add to cart</button>
+            <a class="btn btn-small btn-primary" href="payments.html">Book Now</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product: Comfy Tee -->
+      <article class="product">
+        <img src="https://i.ibb.co/0fZ6t2g/tshirt.jpg" alt="Comfy Tee">
+        <h3>Sunny Day Comfy Tee</h3>
+        <p class="muted">Organic cotton, gentle on skin</p>
+        <div class="product-bottom">
+          <div class="price">₹799</div>
+          <div class="actions">
+            <button class="btn btn-small btn-outline" onclick="addToCart('Sunny Day Comfy Tee',799,'https://i.ibb.co/0fZ6t2g/tshirt.jpg')">Add to cart</button>
+            <a class="btn btn-small btn-primary" href="payments.html">Book Now</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product: Sensory Kit -->
+      <article class="product">
+        <img src="https://i.ibb.co/3M3hJfH/sensory.jpg" alt="Sensory Kit">
+        <h3>World Sensory Kit</h3>
+        <p class="muted">Colorful textures for learning</p>
+        <div class="product-bottom">
+          <div class="price">₹999</div>
+          <div class="actions">
+            <button class="btn btn-small btn-outline" onclick="addToCart('World Sensory Kit',999,'https://i.ibb.co/3M3hJfH/sensory.jpg')">Add to cart</button>
+            <a class="btn btn-small btn-primary" href="payments.html">Book Now</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product: Cuddle Toy -->
+      <article class="product">
+        <img src="https://i.ibb.co/vH3YwJg/soft-toy.jpg" alt="Soft Toy">
+        <h3>CuddleCloud Soft Toy</h3>
+        <p class="muted">Hypoallergenic plush</p>
+        <div class="product-bottom">
+          <div class="price">₹599</div>
+          <div class="actions">
+            <button class="btn btn-small btn-outline" onclick="addToCart('CuddleCloud Soft Toy',599,'https://i.ibb.co/vH3YwJg/soft-toy.jpg')">Add to cart</button>
+            <a class="btn btn-small btn-primary" href="payments.html">Book Now</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product: Mealtime Set -->
+      <article class="product">
+        <img src="https://i.ibb.co/d4K4sGZ/plate-bowl.jpg" alt="Mealtime Set">
+        <h3>Mealtime Set — Tiny Explorer</h3>
+        <p class="muted">Suction base & soft edges</p>
+        <div class="product-bottom">
+          <div class="price">₹699</div>
+          <div class="actions">
+            <button class="btn btn-small btn-outline" onclick="addToCart('Mealtime Set — Tiny Explorer',699,'https://i.ibb.co/d4K4sGZ/plate-bowl.jpg')">Add to cart</button>
+            <a class="btn btn-small btn-primary" href="payments.html">Book Now</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product: Rainy Day Coat -->
+      <article class="product">
+        <img src="https://i.ibb.co/P5r1zqF/raincoat.jpg" alt="Raincoat">
+        <h3>Rainy Day Coat — Little Voyager</h3>
+        <p class="muted">Waterproof & cute prints</p>
+        <div class="product-bottom">
+          <div class="price">₹1099</div>
+          <div class="actions">
+            <button class="btn btn-small btn-outline" onclick="addToCart('Rainy Day Coat — Little Voyager',1099,'https://i.ibb.co/P5r1zqF/raincoat.jpg')">Add to cart</button>
+            <a class="btn btn-small btn-primary" href="payments.html">Book Now</a>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div><strong>Toddler Kits</strong> • Playful essentials</div>
+    <div class="footer-meta">Contact: toddlerkits@example.com</div>
+  </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
